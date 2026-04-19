@@ -1,6 +1,6 @@
 # 📊 IT Job Market Analysis — Data Analyst Jobs
 
-A data cleaning and visualization project analyzing **2,253 Data Analyst job listings** sourced from Glassdoor. The project covers salary trends, job distribution by location, and role-level breakdowns across the US IT job market.
+A data cleaning and visualization project analyzing **2,253 Data Analyst job listings** sourced from Kaggle. The project covers salary trends, job distribution by location, and role-level breakdowns across the US IT job market.
 
 ---
 
@@ -17,9 +17,8 @@ A data cleaning and visualization project analyzing **2,253 Data Analyst job lis
 ```
 job-market-analysis/
 │
-├── DataAnalyst.csv          # Raw dataset (Glassdoor job listings)
-├── DataAnalyst_cleaned.csv  # Cleaned dataset after preprocessing
-├── analysis.ipynb           # Data cleaning & EDA notebook
+├── DataAnalyst.csv          # Raw dataset (sourced from Kaggle)
+├── DataAnalyst_cleaned.xlsx # Cleaned dataset after preprocessing in Excel
 ├── dashboard.pbix           # Power BI dashboard file
 └── README.md
 ```
@@ -38,25 +37,24 @@ job-market-analysis/
 
 ## 🧹 Data Cleaning Steps
 
-The raw dataset required significant preprocessing before analysis:
+The raw dataset was cleaned manually in **Microsoft Excel** before being loaded into Power BI:
 
 | Issue | Fix Applied |
 |---|---|
-| Rating embedded in Company Name | Stripped newline + rating from company string |
-| Salary as string range | Extracted min/max salary as numeric columns |
-| `-1` used as placeholder for missing values | Replaced with `NaN` across all affected columns |
-| `Size` had both `"Unknown"` and `"-1"` | Unified to `NaN` |
-| `Easy Apply` had `"-1"` instead of `False` | Standardised to boolean |
-| `Founded` had `-1` for unknown years | Replaced with `NaN` |
-| `Competitors` had `-1` for no entry | Replaced with `NaN` |
-| 1 missing `Company Name` | Flagged and handled |
+| Rating embedded in Company Name | Separated rating from company name using text functions |
+| Salary stored as a string range | Split into Min Salary and Max Salary numeric columns |
+| Inconsistent job title formatting | Standardised casing and removed extra whitespace |
+| Duplicate rows | Identified and removed duplicates |
+| Irrelevant columns | Removed columns not needed for analysis |
+
+> **Note:** Fields with `-1` placeholder values were retained as-is in this version of the dataset.
 
 ---
 
 ## 📊 Visualisations
 
 ### Average Salary by Job Title
-Horizontal bar chart ranking Data Analyst roles from highest to lowest average salary. AI/Senior roles command the highest compensation at ~$150K–$175K.
+Horizontal bar chart ranking Data Analyst roles from highest to lowest average salary. AI and Senior roles command the highest compensation at ~$150K–$175K.
 
 ### Job Distribution by Location (Pie Chart)
 Geographic breakdown of all 2,253 listings across US cities. New York leads significantly, followed by Chicago, San Francisco, and Austin.
@@ -71,41 +69,35 @@ Geographic breakdown of all 2,253 listings across US cities. New York leads sign
 
 | Tool | Purpose |
 |---|---|
-| Python (pandas) | Data cleaning & preprocessing |
+| Microsoft Excel | Data cleaning & preprocessing |
 | Power BI | Dashboard & visualisation |
-| Glassdoor Dataset | Source data |
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-```
-python >= 3.8
-pandas
-```
-
-### Run the cleaning notebook
-```bash
-git clone https://github.com/jazimahmed/job-market-analysis.git
-cd job-market-analysis
-jupyter notebook analysis.ipynb
-```
+| Kaggle | Data source |
 
 ---
 
 ## 📂 Dataset
 
-The dataset was sourced from Glassdoor and contains the following fields:
+The dataset was sourced from **Kaggle** and contains Data Analyst job listings with the following fields:
 
 `Job Title` · `Salary Estimate` · `Job Description` · `Rating` · `Company Name` · `Location` · `Headquarters` · `Size` · `Founded` · `Type of Ownership` · `Industry` · `Sector` · `Revenue` · `Competitors` · `Easy Apply`
+
+---
+
+## 🚀 Getting Started
+
+1. Clone the repository
+```bash
+git clone https://github.com/jazimahmed/job-market-analysis.git
+```
+2. Open `DataAnalyst_cleaned.xlsx` to explore the cleaned data
+3. Open `dashboard.pbix` in **Power BI Desktop** to interact with the dashboard
 
 ---
 
 ## 👤 Author
 
 **Jazim Ahmed**
-[GitHub](https://github.com/jazimahmed) 
+[GitHub](https://github.com/jazimahmed)
 
 ---
 
